@@ -9,7 +9,8 @@ import java.util.List;
  * Created by user on 6/23/2015.
  */
 public class EmployeeRecursion {
-    public static void main(String[] args) {
+
+    public List<Employee> getEmployees() {
         Employee e = new Employee();
         Employee e1 = new Employee();
         Employee e2 = new Employee();
@@ -19,6 +20,7 @@ public class EmployeeRecursion {
         employeeList.add(e1);
         employeeList.add(e2);
         employeeList.add(e3);
+        return employeeList;
     }
 
     public Double getSalary(List<Employee> employees) {
