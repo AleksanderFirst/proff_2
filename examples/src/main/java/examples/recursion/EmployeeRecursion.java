@@ -15,7 +15,7 @@ public class EmployeeRecursion {
         Employee e1 = new Employee();
         Employee e2 = new Employee();
         Employee e3 = new Employee();
-        List<Employee> employeeList = new ArrayList<>();
+        List<Employee> employeeList = new ArrayList<Employee>();
         employeeList.add(e);
         employeeList.add(e1);
         employeeList.add(e2);
