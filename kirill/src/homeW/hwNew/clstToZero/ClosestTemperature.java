@@ -1,4 +1,4 @@
-package closestToZero;
+package clstToZero;
 
 public class ClosestTemperature implements TemperatureRange {
     @Override

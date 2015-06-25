@@ -1,5 +1,5 @@
-import closestToZero.ClosestTemperature;
-import closestToZero.TemperatureExeption;
+import clstToZero.ClosestTemperature;
+import clstToZero.TemperatureExeption;
 import org.junit.Test;
 
 public class CloseToZeroTest {
