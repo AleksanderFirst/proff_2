@@ -10,13 +10,15 @@ public class ClosestToZeroTest {
     private double[] ts = {1, -1, 2, -2, -200};
     private double[] ts1 = {8000, -1, 2, -2, -200}; //exception
     private double[] ts2 = {1, -1, 2, -290};  //exception
-    private double[] ts3 = {-0.1, 2.2, -2, -200};
+    private double[] ts3 = {0, 2.2, -2, -200};
     private double[] ts4 = {};  //empty
 
     private double CHECK_TS = 1.0;
-    private double CHECK_TS3 = -0.1;
+    private double CHECK_TS3 = 0;
 
     private ClosestToZero closestToZero = new ClosestToZero();
+
+
     @Test
     public void testClosetToZero() throws TemperatureException{
         double i = 0;
