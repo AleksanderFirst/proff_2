@@ -1,6 +1,7 @@
 /**
  * Created by avasilenko on 26.06.2015.
  */
+/*Temperature analysis*/
 public class TempAnalyze {
 
     double closestToZero(double[] ts){
