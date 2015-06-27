@@ -1,0 +1,23 @@
+create table books
+(
+book_isbn   VARCHAR2(12) NOT NULL PRIMARY KEY,
+book_name   VARCHAR2(255) NOT NULL
+);
+
+create table authors
+(
+author_id   INTEGER NOT NULL PRIMARY KEY,
+author_nl   VARCHAR2(255) NOT NULL
+);
+
+create table relations
+(
+author_id INTEGER NOT NULL FOREIGN KEY REFERENCES authors(author_id),
+book_isbn VARCHAR2(12) NOT NULL FOREIGN KEY REFERENCES books(book_isbn)
+);
+
+select a.*
+from books b, authors a, relations r
+where b.book_isbn = relations.book_isbn
+  and relations.author_id = a.author_id
+  and b.book_isbn = '123';

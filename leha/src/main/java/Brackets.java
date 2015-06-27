@@ -9,7 +9,6 @@ public class Brackets {
 
         if (str.charAt(0) == '(' && str.indexOf(")") != -1)
         {
-
             return isCorrectBrackets(str.substring(1, str.indexOf(")")) + str.substring(str.indexOf(")")+1));
         }
         else return false;

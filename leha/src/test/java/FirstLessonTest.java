@@ -13,14 +13,14 @@ public class FirstLessonTest {
     {
         Brackets b = new Brackets();
         final boolean isCorrect = true;
-        Assert.assertEquals(isCorrect, b.isCorrectBrackets("()()()"));
+        Assert.assertEquals(isCorrect, b.isCorrectBrackets("(())"));
     }
 
     @Test
     public void testTempAnalyze()
     {
-        final double dCorrrect = 1;
-        double [] ts = {-1,-15,-17,-3,+5,+17, 1};
+        final double dCorrrect = -1;
+        double [] ts = {-1,-15,-17,-3,+5,+17, 17};
 
         TempAnalyze t = new TempAnalyze();
         Assert.assertEquals(dCorrrect, t.closestToZero(ts), 0);
