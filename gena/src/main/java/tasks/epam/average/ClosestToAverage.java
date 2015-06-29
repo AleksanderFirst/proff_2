@@ -1,6 +1,6 @@
 package tasks.epam.average;
 
-import tasks.epam.temperature.TemperatureOutOfBoundException;
+
 
 /**
  * Created by sigen on 6/29/2015.
