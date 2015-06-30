@@ -16,7 +16,7 @@ public class TemperaturesClosestToAverageTest {
          double n = temperaturesClosestToAverage.closestToAverage(ts1);
          double avg = temperaturesClosestToAverage.calcAverage(ts1);
          Assert.assertEquals(-2.0, n, DELTA);
-     }
+    }
 
     @Test
     public void calAverageTest() throws TemperatureException {
