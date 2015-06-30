@@ -35,4 +35,14 @@ public class FirstLessonTest {
         TempAvg t = new TempAvg();
         Assert.assertEquals(dCorrrect, t.closestToAvg(ts), 0);
     }
+
+    @Test
+    public void testArraySum()
+    {
+        final double dCorrrect = -13;
+        double [] ts = {-1,-15,-17,-3,+5,+17, 1};
+
+        ArraySum t = new ArraySum();
+        Assert.assertEquals(dCorrrect, t.getSumByDiv(ts), 0);
+    }
 }
