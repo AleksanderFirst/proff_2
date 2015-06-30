@@ -1,12 +1,15 @@
-package epamTasks;
+package hw1.closestToZero;
 
-public class Temperatures implements ClosestToZero{
+import hw1.closestToZero.ClosestToZero;
+import hw1.closestToZero.TemperatureException;
 
-    private double[] ts = { 7.0, -10.0, 13.0, 8.0, 4.0, -7.2, -12.0, -3.7, 3.5, -9.6, 6.5, -1.7, -6.2, 7.0};
+public class TemperaturesClosestToZero implements ClosestToZero {
+
+    private double[] ts = {7.0, -10.0, 13.0, 8.0, 4.0, -7.2, -12.0, -3.7, 3.5, -9.6, 6.5, -1.7, -6.2, 7.0};
 
     @Override
-    public double closestToZero(double[] ts) throws TemperatureException{
-        double closestToZero = ts[0];
+    public double closestToZero(double[] ts) throws TemperatureException {
+        double closestToZero = Double.MAX_VALUE;
         //if ts is empty return 0;
         if (ts.length == 0){
             return 0;
