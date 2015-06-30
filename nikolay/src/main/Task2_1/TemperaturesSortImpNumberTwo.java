@@ -4,7 +4,10 @@ import java.util.Arrays;
 
 public class TemperaturesSortImpNumberTwo implements TemperaturesSortToAverage {
 	public double closestToAverege(double[] ts) {
-		if (ts.length == 0) {
+		if (ts.length < 2) {
+			if(ts.length == 1){
+				return ts[0];
+			}
 			return 0;
 		}
 		double average = 0;

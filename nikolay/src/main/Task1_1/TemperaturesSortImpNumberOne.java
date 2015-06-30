@@ -4,7 +4,10 @@ import java.util.Arrays;
 
 public class TemperaturesSortImpNumberOne implements TemperaturesSortToZero {
 	public double closestToZero(double[] ts) {
-		if (ts.length == 0) {
+		if (ts.length < 2) {
+			if(ts.length == 1){
+				return ts[0];
+			}
 			return 0;
 		}
 		Arrays.sort(ts);
