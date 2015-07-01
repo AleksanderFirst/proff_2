@@ -2,7 +2,6 @@ package EmployeeRecursion;
 
 import java.util.List;
 
-import javax.xml.parsers.ParserConfigurationException;
 
 public class SumSalaryEmployerRecursion implements SalaryEmployerRecursion {
 	public double sumBitchEmployee(List<Employee> list) throws IndexOutOfBoundsException{
