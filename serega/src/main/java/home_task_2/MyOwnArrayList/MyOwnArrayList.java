@@ -18,8 +18,9 @@ public class MyOwnArrayList<T> {
         return size;
     }
 
+    @SuppressWarnings("unchecked")
     public T set(int index, T value) {
-        if (index < 0 || index > size - 2) {
+        if (index < 0 || index > size - 1) {
             throw new ArrayIndexOutOfBoundsException();
         }
         T deletedValue = (T) array[index];
@@ -27,14 +28,15 @@ public class MyOwnArrayList<T> {
         return deletedValue;
     }
 
+    @SuppressWarnings("unchecked")
     public T get(int index) {
-        if (index < 0 || index > size - 2) {
+        if (index < 0 || index > size - 1) {
             throw new ArrayIndexOutOfBoundsException();
         }
         return (T) array[index];
     }
 
-    public int add(T value) {
+    public boolean add(T value) {
         if (size == array.length) {
             Object[] temp = new Object[size * 2];
             System.arraycopy(array, 0, temp, 0, size);
@@ -45,11 +47,11 @@ public class MyOwnArrayList<T> {
             array[size] = value;
             size++;
         }
-        return size - 1;
+        return true;
     }
 
     public void add(int index, T value) {
-        if (index < 0 || index > size - 2) {
+        if (index < 0 || index > size - 1) {
             throw new ArrayIndexOutOfBoundsException();
         }
         if (size == array.length) {
@@ -67,7 +69,7 @@ public class MyOwnArrayList<T> {
     }
 
     public T remove(int index) {
-        if (index < 0 || index > size - 2) {
+        if (index < 0 || index > size - 1) {
             throw new ArrayIndexOutOfBoundsException();
         }
         T deletedValue = get(index);
@@ -92,10 +94,12 @@ public class MyOwnArrayList<T> {
     }
 
 
-    public int removeElement(T value) {
+    public boolean remove(T value) {
         int index = indexOf(value);
-        remove(index);
-        return index;
+        if (index >= 0) {
+            remove(index);
+            return true;
+        } else return false;
     }
 
     public boolean contains(T value) {
@@ -105,5 +109,9 @@ public class MyOwnArrayList<T> {
             }
         }
         return false;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
     }
 }
