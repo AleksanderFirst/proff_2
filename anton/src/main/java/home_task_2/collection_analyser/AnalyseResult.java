@@ -6,13 +6,13 @@ package home_task_2.collection_analyser;
 public class AnalyseResult {
 
     public void getResults(ICollectionAnalyser ica){
-        String result = "Result of " + ica.getClass() + ":\n" + ica.getAddTime() + " nanosecs - add\n" +
-                ica.getRemoveIndexTime() + " nanosecs - removeIndex\n" +
-                ica.getAddIndexTime() + " nanosecs - addIndex\n" +
-                ica.getGetTime() + " nanosecs - getIndex\n" +
-                ica.getIndexOfTime() + " nanosecs - indexOf\n" +
-                ica.getSetTime() + " nanosecs - set\n" +
-                ica.getRemoveObjectTime() + " nanosecs - removeObject\n";
+        String result = "Result of " + ica.getClass() + ":\n" + ica.getAddTime() + " millisec - add\n" +
+                ica.getRemoveIndexTime() + " millisec - removeIndex\n" +
+                ica.getAddIndexTime() + " millisec - addIndex\n" +
+                ica.getGetTime() + " millisec - getIndex\n" +
+                ica.getIndexOfTime() + " millisec - indexOf\n" +
+                ica.getSetTime() + " millisec - set\n" +
+                ica.getRemoveObjectTime() + " millisec - removeObject\n";
         System.out.println(result);
     }
 }

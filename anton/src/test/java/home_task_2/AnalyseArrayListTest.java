@@ -20,9 +20,4 @@ public class AnalyseArrayListTest {
         analyseResult.getResults(collectionFactory.analyseCollection(new MyArrayList()));
     }
 
-  /*  public static void main(String[] args) {
-        CollectionFactory collectionFactory = new CollectionFactory();
-        AnalyseResult analyseResult = new AnalyseResult();
-        analyseResult.getResults(collectionFactory.analyseCollection(new MyArrayList()));
-    }*/
 }

@@ -21,22 +21,8 @@ public class MyArrayListTest {
         strings.add("E");
         strings.add("F");
         strings.add("G");
-        strings.add("H");
-        strings.add("I");
-        strings.add("J");
-        strings.add("K");
-        strings.remove(0);
-        strings.remove(0);
-        strings.remove(0);
-        strings.remove(0);
-        strings.remove(0);
-        strings.remove(0);
-        strings.remove(0);
-        strings.remove(0);
-        strings.remove(0);
-        strings.remove(0);
-        strings.remove(0);
-        strings.remove(0);
+        strings.add(0,"1");
+
         System.out.println(strings);
     }
 }

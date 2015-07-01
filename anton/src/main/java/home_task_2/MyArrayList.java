@@ -42,8 +42,8 @@ public class MyArrayList<T> implements List<T> {
     public boolean add(T t) {
         if (size + 1 > DEFAULT_CAPACITY){
             Object[] oldObjects = objects;
-            int oldCapacity = DEFAULT_CAPACITY;
-            objects = new Object[(3*oldCapacity)/2 + 1];
+            DEFAULT_CAPACITY = ((3*DEFAULT_CAPACITY)/2 + 1);
+            objects = new Object[DEFAULT_CAPACITY];
             System.arraycopy(oldObjects, 0, objects, 0, size);
         }
         objects[size] = t;
@@ -101,18 +101,14 @@ public class MyArrayList<T> implements List<T> {
         if (index < size) {
             if (size + 1 > DEFAULT_CAPACITY) {
                 Object[] oldObjects = objects;
-                int oldCapacity = DEFAULT_CAPACITY;
-                DEFAULT_CAPACITY *= 2;
+                DEFAULT_CAPACITY = ((3*DEFAULT_CAPACITY)/2 + 1);
                 objects = new Object[DEFAULT_CAPACITY];
                 System.arraycopy(oldObjects, 0, objects, 0, index);
                 objects[index] = element;
                 System.arraycopy(oldObjects, index, objects, index + 1, size - index + 1);
             } else {
-                Object[] oldObjects = objects;
-                objects = new Object[DEFAULT_CAPACITY];
-                System.arraycopy(oldObjects, 0, objects, 0, index);
+                System.arraycopy(objects, index, objects, index + 1, size - index + 1);
                 objects[index] = element;
-                System.arraycopy(oldObjects, index, objects, index + 1, size - index + 1);
             }
         }
         else throw new IndexOutOfBoundsException();
@@ -121,15 +117,29 @@ public class MyArrayList<T> implements List<T> {
 
     public T remove(int index) {
         if (index < size) {
-            int count = size - index;
+            int count = size - index - 1;
             Object[] oldObjects = objects;
             Object o = objects[index];
             System.arraycopy(oldObjects, index + 1, objects, index, count);
-            size--;
+            objects[--size] = null;
             return (T) o;
         }
         else throw new IndexOutOfBoundsException();
     }
+ /* public T remove(int index) {
+      if (index < 0 || index > size - 1) {
+          throw new ArrayIndexOutOfBoundsException();
+      }
+      T deletedValue = get(index);
+      System.arraycopy(objects, index + 1, objects, index, size - index - 1);
+      size--;
+      if (size < objects.length / 2) {
+          Object[] temp = new Object[objects.length / 2];
+          System.arraycopy(objects, 0, temp, 0, size);
+          objects = temp;
+      }
+      return deletedValue;
+  }*/
 
     public int indexOf(Object o) {
         for (int i = 0; i < size; i++) {
