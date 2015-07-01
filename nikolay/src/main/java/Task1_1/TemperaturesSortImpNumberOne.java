@@ -3,9 +3,11 @@ package Task1_1;
 import java.util.Arrays;
 
 public class TemperaturesSortImpNumberOne implements TemperaturesSortToZero {
+	
 	public double closestToZero(double[] ts) {
 		if (ts.length < 2) {
-			if(ts.length == 1){
+			if (ts.length == 1) {
+				tsMeater(ts[0]);
 				return ts[0];
 			}
 			return 0;
@@ -15,14 +17,11 @@ public class TemperaturesSortImpNumberOne implements TemperaturesSortToZero {
 		boolean findGoalIndex = true;
 		double result;
 		for (int index = 0; index < ts.length; index++) {
-			if (ts[index] > (-273) && ts[index] < 5526) {
+			if (tsMeater(ts[index])) {
 				if (findGoalIndex && ts[index] > 0) {
 					goalIndex = index;
 					findGoalIndex = false;
 				}
-			} else {
-				throw new IllegalArgumentException(
-						"Неверный показатель температуры:" + ts[index]);
 			}
 		}
 		if (Math.abs(ts[goalIndex - 1]) == ts[goalIndex]) {
@@ -36,4 +35,10 @@ public class TemperaturesSortImpNumberOne implements TemperaturesSortToZero {
 		return result;
 	}
 
+	private boolean tsMeater(double ts) {
+		if (ts > (-273) && ts < 5526) {
+			return true;
+		}
+		throw new IllegalArgumentException("Неверный показатель температуры:" + ts);
+	}
 }
