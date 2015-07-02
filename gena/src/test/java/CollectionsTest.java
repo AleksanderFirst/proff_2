@@ -26,7 +26,7 @@ public class CollectionsTest {
         }
         return al;
     }
-
+//
     @Test
     public void testArrTester(){
         ArrayList list = getArrayList();
