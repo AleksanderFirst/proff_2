@@ -1,3 +1,5 @@
+package task1;
+
 /**
  * Created by oleksii on 27.06.2015.
  */
