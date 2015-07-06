@@ -1,5 +1,6 @@
 package TaskCreateArrayList;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -7,10 +8,10 @@ import java.util.ListIterator;
 
 public class MyArrayList<T> implements List<T>{
 	private int CAPACITY = 10;
-	private T values[];
+	private Object values[];
 	private int size;
 	public  MyArrayList(){
-		values = (T[]) new Object[CAPACITY];
+		values = new Object[CAPACITY];
 	}
 	@Override
 	public int size() {
@@ -19,28 +20,32 @@ public class MyArrayList<T> implements List<T>{
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
+		if(size==0) return true;
 		return false;
 	}
 
 	@Override
 	public boolean contains(Object o) {
-		// TODO Auto-generated method stub
+		for(Object c: Arrays.copyOfRange(values, 0, size)){
+			if(c.equals(o)){
+				return true;
+			}
+		}
 		return false;
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public Iterator iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return Arrays.asList(Arrays.copyOfRange(values, 0, size)).iterator();
 	}
 
 	@Override
 	public Object[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
+		return Arrays.copyOfRange(values, 0, size);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Object[] toArray(Object[] a) {
 		// TODO Auto-generated method stub
@@ -49,45 +54,112 @@ public class MyArrayList<T> implements List<T>{
 
 	@Override
 	public boolean add(T e) {
-		values[size] = e;
-		setSize();
+		checkSize();
+		values[size++] = e;
 		return true;
 	}
 
 	@Override
 	public boolean remove(Object o) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean containsAll(Collection c) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean addAll(Collection c) {
-		changeCapacity(size + c.size() - 2);
-		List<T> list = (List) c;
-		for (int index = 0; index < c.size(); index++) {
-			add(list.get(index));
+		try {
+			int index = indexOf(o);
+		Object [] secondPartOfOldValues = Arrays.copyOfRange(values, index+1, size);
+		values = Arrays.copyOf(Arrays.copyOfRange(values, 0, index), CAPACITY);
+		size--;
+		for(Object c:secondPartOfOldValues){
+			values[index++] = c;
+			}
+		} catch (IllegalArgumentException e) {
+			return false;
 		}
 		return true;
 	}
 
 	@Override
+	public boolean containsAll(Collection<?> c) {
+		boolean flag = false;
+		Object obj;
+		Iterator<?> iterator = c.iterator();
+		while(iterator.hasNext()){
+			obj = iterator.next();
+			for(Object o:Arrays.copyOfRange(values, 0, size)){
+				if(o.equals(obj)){
+					flag = true;
+					break;
+				}
+			}
+			if(!flag){
+				return false;
+			}
+			flag = false;
+		}
+		return true;
+	}
+
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
+	public boolean addAll(Collection c) {
+		CAPACITY = ((size + c.size() - 2)*3/2)+1;
+		values = Arrays.copyOf(values, CAPACITY);
+		Iterator<?> iterator = c.iterator();
+		while(iterator.hasNext()){
+			add((T) iterator.next());
+		}
+		return true;
+	}
+
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
 	public boolean addAll(int index, Collection c) {
-		// TODO Auto-generated method stub
-		return false;
+		CAPACITY = ((size + c.size() - 2)*3/2)+1;
+		Iterator<?> iterator = c.iterator();
+		int goalSize = size + c.size() - 2;
+		Object [] secondPartOfOldValues = Arrays.copyOfRange(values, index, goalSize);;
+		values = Arrays.copyOf(Arrays.copyOfRange(values, 0, index), CAPACITY);
+		while(iterator.hasNext()){
+			add((T) iterator.next());
+			index++;
+		}
+		for(Object c1:secondPartOfOldValues){
+			values[index++] = c1;
+		}
+		return true;
 	}
 
 	@Override
-	public boolean removeAll(Collection c) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean removeAll(Collection<?> c) {
+		int [] removingIndex = new int[c.size()];
+		int indexSize = 0;
+		Object obj;
+		Iterator<?> iterator = c.iterator();
+		while(iterator.hasNext()){
+			obj = iterator.next();
+			for(int index = 0 ; index<size;index++){
+				if(values[index].equals(obj)){
+					removingIndex[indexSize++] = index;
+					break;
+				}
+			}
+		}
+		removingIndex = Arrays.copyOfRange(removingIndex, 0, indexSize);
+		if(indexSize == 0){
+			return false;
+		}
+		Object oldValues[] = values.clone();
+		Arrays.sort(removingIndex);
+		removingIndex = Arrays.copyOf(removingIndex, indexSize+1);
+		removingIndex[indexSize++] = size;
+		values = Arrays.copyOf(Arrays.copyOfRange(values, 0, removingIndex[0]), ((size-indexSize-1)*3/2)+1);
+		size = removingIndex[0];
+		for(int index = 1;index < indexSize;index++){
+			for(int indexOfCopy = removingIndex[index-1]+1;indexOfCopy < removingIndex[index];indexOfCopy++){
+				values[size++] = oldValues[indexOfCopy];
+			}
+		}
+		return true;
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public boolean retainAll(Collection c) {
 		// TODO Auto-generated method stub
@@ -96,39 +168,57 @@ public class MyArrayList<T> implements List<T>{
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
+		values = (Object[]) new Object[10];
+		size = 0;
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public T get(int index) {
 		// TODO Auto-generated method stub
+		return (T)values[index];
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Object set(int index, Object element) {
+		values[index] = (T)element;
 		return values[index];
 	}
 
-	@Override
-	public Object set(int index, Object element) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	@SuppressWarnings("unchecked")
 	@Override
 	public void add(int index, Object element) {
 		if(index<size){
-			
+			Object [] secondPartOfOldValues = Arrays.copyOfRange(values, index, size);
+			values = Arrays.copyOf(Arrays.copyOfRange(values, 0, index), CAPACITY);
+			values[index++] = (T)element;
+			size++;
+			for(Object c:secondPartOfOldValues){
+				values[index++] = c;
+			}
 		}
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public T remove(int index) {
-		// TODO Auto-generated method stub
-		return null;
+		Object [] secondPartOfOldValues = Arrays.copyOfRange(values, index+1, size);
+		Object removingElement = values[index];
+		values = Arrays.copyOf(Arrays.copyOfRange(values, 0, index), CAPACITY);
+		size--;
+		for(Object c:secondPartOfOldValues){
+			values[index++] = c;
+		}
+		return  (T)removingElement;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public int indexOf(Object o) {
-		for(int index = 0;index < values.length;index++){
+		for(int index = 0;index < size;index++){
 			if(values[index].equals((T)o)){
 				return index;
 			}
@@ -136,9 +226,10 @@ public class MyArrayList<T> implements List<T>{
 		throw new IllegalArgumentException("Объект не найден");
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public int lastIndexOf(Object o) {
-		for(int index = values.length - 1;0 <= index;index--){
+		for(int index = size - 1;0 <= index;index--){
 			if(values[index].equals((T)o)){
 				return index;
 			}
@@ -146,45 +237,43 @@ public class MyArrayList<T> implements List<T>{
 		throw new IllegalArgumentException("Объект не найден");
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public ListIterator listIterator() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public ListIterator listIterator(int index) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public List subList(int fromIndex, int toIndex) {
-		if (fromIndex < 0 && toIndex > values.length) {
+		if (fromIndex < 0 && toIndex > size) {
 			throw new IllegalArgumentException("Указанный индекс выходит за допустимые пределы");
 		}
-		List<T> list = new MyArrayList<>();
-		for (int index = fromIndex; index < toIndex; index++) {
-			list.add(values[index]);
-		}
-		return list;
+		return Arrays.asList(Arrays.copyOfRange(values, fromIndex, toIndex));
 	}
-	private int setSize(){
+	private void checkSize(){
 		if(size+1>CAPACITY){
-			changeCapacity(size);
-		}
-		return size++;
-	}
-	private void changeCapacity(int size){
-		CAPACITY = (size*3/2)+1;
-		T oldValues[] = values.clone();
-		values = (T[]) new Object[CAPACITY];
-		size = 0;
-		for(T c:oldValues){
-			values[size] = c;
-			size++;
+			CAPACITY = (size*3/2)+1;
+			values = Arrays.copyOf(values, CAPACITY);
 		}
 	}
-	
+	public String toString(){
+		if(size == 0) return "";
+		if(size == 1) return "[ "+values[0]+" ]";
+		String scr ="[ "+values[0];
+		for(int index = 1;index<size;index++){
+			scr = scr + ", " + values[index];
+		}
+		scr+="]";
+		return scr;
+	}
 
 }
