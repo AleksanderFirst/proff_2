@@ -1,3 +1,5 @@
+package task1;
+
 import org.junit.*;
 
 /**
@@ -5,6 +7,10 @@ import org.junit.*;
  */
 
 import org.junit.Test;
+import task1.ArraySum;
+import task1.Brackets;
+import task1.TempAnalyze;
+import task1.TempAvg;
 
 public class FirstLessonTest {
 
