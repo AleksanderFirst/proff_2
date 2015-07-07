@@ -126,20 +126,6 @@ public class MyArrayList<T> implements List<T> {
         }
         else throw new IndexOutOfBoundsException();
     }
- /* public T remove(int index) {
-      if (index < 0 || index > size - 1) {
-          throw new ArrayIndexOutOfBoundsException();
-      }
-      T deletedValue = get(index);
-      System.arraycopy(objects, index + 1, objects, index, size - index - 1);
-      size--;
-      if (size < objects.length / 2) {
-          Object[] temp = new Object[objects.length / 2];
-          System.arraycopy(objects, 0, temp, 0, size);
-          objects = temp;
-      }
-      return deletedValue;
-  }*/
 
     public int indexOf(Object o) {
         for (int i = 0; i < size; i++) {

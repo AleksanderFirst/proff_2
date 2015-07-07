@@ -29,10 +29,32 @@ public class Employee {
         this.salary = salary;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Employee employee = (Employee) o;
+
+        if (firstName != null ? !firstName.equals(employee.firstName) : employee.firstName != null) return false;
+        if (secondName != null ? !secondName.equals(employee.secondName) : employee.secondName != null) return false;
+        return !(salary != null ? !salary.equals(employee.salary) : employee.salary != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = firstName != null ? firstName.hashCode() : 0;
+        result = 31 * result + (secondName != null ? secondName.hashCode() : 0);
+        result = 31 * result + (salary != null ? salary.hashCode() : 0);
+        return result;
+    }
+
     public static ArrayList<Employee> getEmployees(){
         ArrayList<Employee> list = new ArrayList<Employee>();
         list.add(new Employee("Anton", "Babak", new BigDecimal(1000)));
         list.add(new Employee("Roman", "Ivanchenko", new BigDecimal(2200)));
+
         return list;
     }
 }
