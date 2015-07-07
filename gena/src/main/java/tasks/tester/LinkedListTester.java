@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Created by artem on 01.07.15.
- */
 public class LinkedListTester implements ICollectionTester {
     List list;
     public LinkedListTester(LinkedList list){
