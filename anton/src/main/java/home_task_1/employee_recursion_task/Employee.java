@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * Created by Антон on 24.06.2015.
  */
-public class Employee {
+public class Employee implements Comparable{
     private String firstName;
     private String secondName;
     private BigDecimal salary;
@@ -56,5 +56,13 @@ public class Employee {
         list.add(new Employee("Roman", "Ivanchenko", new BigDecimal(2200)));
 
         return list;
+    }
+
+    public int compareTo(Object o) {
+        Employee employee = (Employee)o;
+        if (salary.compareTo(employee.getSalary()) > 0) return 1;
+        if (salary.compareTo(employee.getSalary()) < 0) return -1;
+        return 0;
+
     }
 }

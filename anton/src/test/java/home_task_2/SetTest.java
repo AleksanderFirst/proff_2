@@ -9,7 +9,9 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Created by Антон on 07.07.2015.
@@ -32,9 +34,35 @@ public class SetTest {
         Assert.assertEquals(goodEmployees.size(),badEmployees.size());
     }
     @Test
-    public void employeeSetTest(){
+    public void employeeHashSetTest(){
         Set<Employee> goodEmployees = new HashSet<Employee>();
         Set<UncorrectEmployee> badEmployees = new HashSet<UncorrectEmployee>();
+        correctEmployeeSetAnalyser = new CorrectEmployeeSetAnalyser(goodEmployees);
+        uncorrectEmployeeSetAnalyser = new UncorrectEmployeeSetAnalyser(badEmployees);
+        System.out.println(correctEmployeeSetAnalyser.getAddTime());
+        System.out.println(uncorrectEmployeeSetAnalyser.getAddTime());
+        System.out.println(goodEmployees.size());
+        System.out.println(badEmployees.size());
+        System.out.println(correctEmployeeSetAnalyser.getRemoveTime());
+        System.out.println(uncorrectEmployeeSetAnalyser.getRemoveTime());
+    }
+    @Test
+    public void employeeTreeSetTest(){
+        Set<Employee> goodEmployees = new TreeSet<Employee>();
+        Set<UncorrectEmployee> badEmployees = new TreeSet<UncorrectEmployee>();
+        correctEmployeeSetAnalyser = new CorrectEmployeeSetAnalyser(goodEmployees);
+        uncorrectEmployeeSetAnalyser = new UncorrectEmployeeSetAnalyser(badEmployees);
+        System.out.println(correctEmployeeSetAnalyser.getAddTime());
+        System.out.println(uncorrectEmployeeSetAnalyser.getAddTime());
+        System.out.println(goodEmployees.size());
+        System.out.println(badEmployees.size());
+        System.out.println(correctEmployeeSetAnalyser.getRemoveTime());
+        System.out.println(uncorrectEmployeeSetAnalyser.getRemoveTime());
+    }
+    @Test
+    public void employeeLinkedHashSetTest(){
+        Set<Employee> goodEmployees = new LinkedHashSet<Employee>();
+        Set<UncorrectEmployee> badEmployees = new LinkedHashSet<UncorrectEmployee>();
         correctEmployeeSetAnalyser = new CorrectEmployeeSetAnalyser(goodEmployees);
         uncorrectEmployeeSetAnalyser = new UncorrectEmployeeSetAnalyser(badEmployees);
         System.out.println(correctEmployeeSetAnalyser.getAddTime());
