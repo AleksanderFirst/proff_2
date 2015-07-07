@@ -33,4 +33,5 @@ public class LinkedListAnalyzer implements ICollectionAnalyzer{
         }
         return System.currentTimeMillis() - time;
     }
+
 }
