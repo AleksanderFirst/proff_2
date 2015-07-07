@@ -1,3 +1,5 @@
+package archive;
+
 import clstToZero.ClosestTemperature;
 import clstToZero.TemperatureExeption;
 import org.junit.Test;

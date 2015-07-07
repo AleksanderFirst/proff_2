@@ -1,4 +1,6 @@
-import MyArrayList.MyArray;
+package archive;
+
+import myArrayList.MyArray;
 import org.junit.Test;
 
 import java.util.List;

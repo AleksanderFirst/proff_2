@@ -1,3 +1,5 @@
+package archive;
+
 import org.junit.Test;
 import sumList.Sum;
 

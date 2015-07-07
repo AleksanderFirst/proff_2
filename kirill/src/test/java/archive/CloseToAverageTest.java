@@ -1,3 +1,4 @@
+package archive;
 
 import clstToAverage.ClosestAverage;
 import clstToZero.TemperatureExeption;
