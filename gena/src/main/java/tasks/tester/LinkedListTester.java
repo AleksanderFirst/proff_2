@@ -33,6 +33,7 @@ public class LinkedListTester implements ICollectionTester {
         for (int i = 0; i < 100; i++) {
             list.add(obj);
         }
+
         return System.currentTimeMillis() - time;
     }
 }
