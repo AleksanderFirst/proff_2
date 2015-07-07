@@ -10,7 +10,48 @@ public class LinkedListTester implements ICollectionTester {
         this.list = list;
     }
 
-    @Override
+    public long getFromTheMiddle() {
+        long time = System.currentTimeMillis();
+        for (int i = 0; i < 100; i++) {
+            Object object = list.get(list.size() / 2);}
+        return System.currentTimeMillis() - time;
+    }
+
+    public long getFromTheStart() {
+        long time = System.currentTimeMillis();
+        for (int i = 0; i < 100; i++) {
+            Object object = list.get(0);}
+        return System.currentTimeMillis() - time;
+    }
+
+    public long getFromTheEnd() {
+        long time = System.currentTimeMillis();
+        for (int i = 0; i < 100; i++) {
+            Object object = list.get(list.size()-1);}
+        return System.currentTimeMillis() - time;
+    }
+
+    public long removeFromTheStart() {
+        long time = System.currentTimeMillis();
+        for (int i = 0; i < 100; i++) {
+            list.remove(0);}
+        return System.currentTimeMillis() - time;
+    }
+
+    public long removeFromTheMiddle() {
+        long time = System.currentTimeMillis();
+        for (int i = 0; i < 100; i++) {
+            Object object = list.remove(list.size()/2);}
+        return System.currentTimeMillis() - time;
+    }
+
+    public long removeFromTheEnd() {
+        long time = System.currentTimeMillis();
+        for (int i = 0; i < 100; i++) {
+            Object object = list.get(list.size() -1);}
+        return System.currentTimeMillis() - time;
+    }
+
     public long addInStartTiming(Object obj) {
         long time = System.currentTimeMillis();
         for (int i = 0; i < 100; i++) {
@@ -18,7 +59,6 @@ public class LinkedListTester implements ICollectionTester {
         return System.currentTimeMillis() - time;
     }
 
-    @Override
     public long addInMiddleTiming(Object obj) {
         long time = System.currentTimeMillis();
         for (int i = 0; i < 100; i++) {
@@ -27,7 +67,6 @@ public class LinkedListTester implements ICollectionTester {
         return System.currentTimeMillis() - time;
     }
 
-    @Override
     public long addInEndTiming(Object obj) {
         long time = System.currentTimeMillis();
         for (int i = 0; i < 100; i++) {

@@ -2,6 +2,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import tasks.epam.brackets.BracketsValidator;
 
+import java.util.concurrent.CopyOnWriteArrayList;
+
 /**
  * Created by sigen on 6/29/2015.
  */
