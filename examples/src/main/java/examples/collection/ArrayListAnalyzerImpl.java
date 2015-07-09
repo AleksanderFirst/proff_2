@@ -11,7 +11,7 @@ public class ArrayListAnalyzerImpl implements ICollectionAnalyzer {
     public long getAddTime() {
         long timeBefore = System.currentTimeMillis();
         for(int i = 0; i < 1000000; i++) {
-            testArrayList.add("A");
+            testArrayList.add("collection.Company");
         }
         return System.currentTimeMillis() - timeBefore;
     }
@@ -27,7 +27,7 @@ public class ArrayListAnalyzerImpl implements ICollectionAnalyzer {
     public long timeAddInBegin() {
         long timeBefore = System.currentTimeMillis();
         for(int i = 0; i < 1000000; i++) {
-            testArrayList.add(0, "A");
+            testArrayList.add(0, "collection.Company");
         }
         return System.currentTimeMillis() - timeBefore;
     }
