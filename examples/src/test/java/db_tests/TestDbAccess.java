@@ -10,7 +10,7 @@ import java.sql.*;
  * Created by randriyanov on 09.07.15.
  */
 public class TestDbAccess {
-    private static String DB_URL = "jdbc:mysql://localhost/mydb";
+    private static String DB_URL = "jdbc:mysql://localhost/shop";
     private static String USER = "root";
     private static String PASS = "root";
 
@@ -48,6 +48,54 @@ public class TestDbAccess {
                 System.out.print(", Salary " + salary);
                 System.out.print(", Age " + age);
                 System.out.println();
+            }
+            ResultSetMetaData metaData = rs.getMetaData();
+            System.out.println(metaData.getColumnCount());
+            System.out.println(metaData.getColumnClassName(1));
+            System.out.println(metaData.getColumnLabel(1));
+            System.out.println(metaData.getColumnName(1));
+            System.out.println(metaData.getColumnType(1));
+        } catch (SQLException se) {
+            for (Throwable t : se.getNextException()) {
+                t.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if(stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        System.out.println("Goodbye!");
+    }
+
+    @Test
+    public void updateWarehouse() {
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            String supplierName = "test";
+            String goodName = "test_good";
+            conn = getConnection();
+            stmt = conn.createStatement();
+            String idSupplier = "SELECT id from good WHERE good_name='test_good'";
+            String idGood ="SELECT id from supplier WHERE supplier_name=" + goodName;
+            ResultSet rsSupplier = stmt.executeQuery(idSupplier);
+            while (rsSupplier.next()) {
+                //Retrieve by column name
+                int idSup = rsSupplier.getShort("id");;
+                System.out.println(idSup);
             }
         } catch (SQLException se) {
             for (Throwable t : se.getNextException()) {
