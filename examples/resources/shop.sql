@@ -5,6 +5,7 @@ supplier_name VARCHAR(255),
 phone VARCHAR(15),
 PRIMARY KEY (id)
 );
+
 ALTER TABLE supplier
    ADD CONSTRAINT myUniqueConstraint UNIQUE(supplier_name);
 
