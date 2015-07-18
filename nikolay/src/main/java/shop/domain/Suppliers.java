@@ -1,8 +1,9 @@
 package shop.domain;
 
-public class Suppliers {
+public class Suppliers implements InsertToShop{
 	private String supplier_name;
 	private String phone;
+	private final static String columns = "supplier (supplier_name,phone)";
 
 	public Suppliers(String Name, String phone) {
 		setSupplier_name(Name);
@@ -25,6 +26,16 @@ public class Suppliers {
 
 	private void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	@Override
+	public String toInsert() {
+		return "(" + getSupplier_name() + "," + getPhone()+")";
+	}
+
+	@Override
+	public String getColunms() {
+		return columns;
 	}
 
 }
