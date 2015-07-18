@@ -15,12 +15,16 @@ public class dbTest {
 
         c.setFirstName("Karina");
         c.setLastName("Vasylenko");
-        c.setEmail("true_star@ukr.net");
+        c.setEmail("old@ukr.net");
 
         cDao.insert(c);
         System.out.println("Email:" + c.getEmail() + " id:" + c.getId());
 
         cDao.select(c);
+        System.out.println("Email:" + c.getEmail() + " id:" + c.getId());
+
+        c.setEmail("new@ukr.net");
+        cDao.update(c);
         System.out.println("Email:" + c.getEmail() + " id:" + c.getId());
 
         cDao.delete(c);

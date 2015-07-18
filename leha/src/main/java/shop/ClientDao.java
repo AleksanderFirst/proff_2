@@ -178,4 +178,47 @@ public class ClientDao {
         }
     }
 
+    public void update(Client client)
+    {
+        //Check for null in first_name and second_name
+        if (client.getFirstName() == null || client.getLastName() == null)
+        {
+            System.out.println("Client first name, last name or email is NULL!");
+            return;
+        }
+
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        try {
+            conn = getConnection();
+            String sql = "UPDATE client SET email = ? WHERE first_name = ? and second_name = ?";
+
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, client.getEmail());
+            stmt.setString(2, client.getFirstName());
+            stmt.setString(3, client.getLastName());
+
+            stmt.executeUpdate();
+        } catch (SQLException se) {
+            System.out.println(se.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if(stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
 }
