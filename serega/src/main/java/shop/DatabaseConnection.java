@@ -5,18 +5,20 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnection {
-    private static String DB_URL = "jdbc:mysql://localhost/shop";
-    private static String USER = "root";
-    private static String PASS = "root";
+    private static Connection connection = null;
+    private static String DB_URL = "jdbc:mysql://sql4.freemysqlhosting.net/sql484252";
+    private static String USER = "sql484252";
+    private static String PASS = "tR3!lW4%";
 
+    protected DatabaseConnection() {
+    }
 
     public static Connection getConnection() {
-        Connection conn = null;
-        try {
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+        if (connection == null) try {
+            connection = DriverManager.getConnection(DB_URL, USER, PASS);
         } catch (SQLException e) {
-            System.out.println("ERROR: Unable to Connect to Database.");
+            e.printStackTrace();
         }
-        return conn;
+        return connection;
     }
 }

@@ -2,18 +2,16 @@ package shop.dao;
 
 import shop.DatabaseConnection;
 import shop.entity.Client;
-import shop.entity.Entity;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class ClientDao implements DaoInterface {
+public class ClientDaoImpl implements DaoInterface<Long, Client> {
 
     @Override
-    public void insert(Entity entity) {
-        Client client = (Client) entity;
+    public void insert(Client client) {
         try (Connection connection = DatabaseConnection.getConnection();
              Statement statement = connection.createStatement()) {
 
@@ -35,15 +33,16 @@ public class ClientDao implements DaoInterface {
         }
     }
 
+
     @Override
-    public Client select(int id) {
+    public Client select(long id) {
         Client client = new Client();
         try (Connection connection = DatabaseConnection.getConnection();
              Statement statement = connection.createStatement()) {
             String query = "SELECT * FROM client WHERE id=" + id;
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
-                client.setId(resultSet.getInt("id"));
+                client.setId(resultSet.getLong("id"));
                 client.setFirstName(resultSet.getString("first_name"));
                 client.setSecondName(resultSet.getString("second_name"));
                 client.setEmail(resultSet.getString("email"));
@@ -55,9 +54,9 @@ public class ClientDao implements DaoInterface {
         return client;
     }
 
+
     @Override
-    public void update(Entity entity) {
-        Client client = (Client) entity;
+    public void update(Client client) {
         try (Connection connection = DatabaseConnection.getConnection();
              Statement statement = connection.createStatement()) {
 
@@ -80,8 +79,9 @@ public class ClientDao implements DaoInterface {
 
     }
 
+
     @Override
-    public void delete(int id) {
+    public void delete(Long id) {
         try (Connection connection = DatabaseConnection.getConnection();
              Statement statement = connection.createStatement()) {
             String query = "SELECT * FROM client WHERE id=" + id;
@@ -96,6 +96,15 @@ public class ClientDao implements DaoInterface {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        ClientDaoImpl clientDao = new ClientDaoImpl();
+        Client client = new Client();
+        client.setFirstName("Second");
+        client.setSecondName("Client");
+        client.setEmail("2@gmail.com");
+        clientDao.insert(client);
     }
 
 }
