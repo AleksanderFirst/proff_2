@@ -11,7 +11,11 @@ import java.sql.SQLException;
 /**
  * Created by sigen on 7/16/2015.
  */
-public class ClientDAO {
+public class ClientDaoImpl implements GeneralDao<Long,Client>{
+    public void delete(Client client) {
+        //
+    }
+
     public void insert(Client client) throws SQLException {
         String firstName = client.getFitstName();
         String secondName = client.getSecondName();
@@ -23,6 +27,14 @@ public class ClientDAO {
         ps.executeQuery();
     }
 
+    public Client select(Long k) {
+        return null;
+    }
+
+    public void update(Client client) {
+
+    }
+
 //    public void delete(Client client) throws SQLException{
 //        int id = client.getId();
 //        PreparedStatement ps = OracleConnection.getConnection().prepareStatement("DELETE from Client WHERE id = ?");
@@ -30,18 +42,15 @@ public class ClientDAO {
 //        ps.executeQuery();
 //    }
 
-    public void update() throws SQLException{
-        //?
-    }
 
     public Client select(Client client) throws SQLException {
-        int id = client.getId();
+        Long id = client.getId();
         PreparedStatement ps = OracleConnection.getConnection().prepareStatement("SELECT * from Client WHERE id = ?");
-        ps.setInt(1, id);
+        ps.setLong(1, id);
         ResultSet rs = ps.executeQuery();
         Client resClient = new Client();
         resClient.setId(client.getId());
-        resClient.setFitstName(rs.getString(1));
+        resClient.setFirstName(rs.getString(1));
         resClient.setSecondName(rs.getString(2));
         resClient.setEmail(rs.getString(3));
         return client;

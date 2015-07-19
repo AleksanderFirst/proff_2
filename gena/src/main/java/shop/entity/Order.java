@@ -5,19 +5,11 @@ import java.io.Serializable;
 /**
  * Created by sigen on 7/16/2015.
  */
-public class Order implements Serializable{
-    private int id;
+public class Order extends AbstractEntity{
     private int client_id;
     private int good_id;
     private int qty;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getClient_id() {
         return client_id;

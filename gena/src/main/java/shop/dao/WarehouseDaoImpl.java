@@ -10,7 +10,7 @@ import java.sql.SQLException;
 /**
  * Created by sigen on 7/19/2015.
  */
-public class WarehouseDAO {
+public class WarehouseDaoImpl implements GeneralDao<Long,Warehouse>{
 
 public void insert(Warehouse warehouse) throws SQLException {
     Integer goodId = warehouse.getGoodId();
@@ -23,28 +23,31 @@ public void insert(Warehouse warehouse) throws SQLException {
     ps.executeQuery();
 }
 
+    public Warehouse select(Long id) throws SQLException {
+        PreparedStatement ps = OracleConnection.getConnection().prepareStatement("SELECT * from Warehouse WHERE id = ?");
+        ps.setLong(1, id);
+        ResultSet rs = ps.executeQuery();
+        Warehouse resWarehouse = new Warehouse();
+        resWarehouse.setId(id);
+        resWarehouse.setGoodId(Integer.valueOf(rs.getString(1)));
+        resWarehouse.setSupllierId(Integer.valueOf(rs.getString(2)));
+        resWarehouse.setQty(Long.getLong(rs.getString(3)));
+        return resWarehouse;
+
+    }
+
+    public void update(Warehouse warehouse) throws SQLException {
+
+    }
+
     public void delete(Warehouse warehouse) throws SQLException{
-        int id = warehouse.getId();
+        Long id = warehouse.getId();
         PreparedStatement ps = OracleConnection.getConnection().prepareStatement("DELETE from Warehouse WHERE id = ?");
-        ps.setInt(1, id);
+        ps.setLong(1, id);
         ps.executeQuery();
     }
 
     public void update() throws SQLException{
         //?
     }
-
-    public Warehouse select(Warehouse warehouse) throws SQLException {
-        int id = warehouse.getId();
-        PreparedStatement ps = OracleConnection.getConnection().prepareStatement("SELECT * from Warehouse WHERE id = ?");
-        ps.setInt(1, id);
-        ResultSet rs = ps.executeQuery();
-        Warehouse resWarehouse = new Warehouse();
-        resWarehouse.setId(warehouse.getId());
-        resWarehouse.setGoodId(Integer.valueOf(rs.getString(1)));
-        resWarehouse.setSupllierId(Integer.valueOf(rs.getString(2)));
-        resWarehouse.setQty(Long.getLong(rs.getString(3)));
-        return resWarehouse;
-    }
-
 }

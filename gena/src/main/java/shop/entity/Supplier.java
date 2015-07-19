@@ -5,18 +5,9 @@ import java.io.Serializable;
 /**
  * Created by sigen on 7/16/2015.
  */
-public class Supplier implements Serializable{
-    private int id;
+public class Supplier extends AbstractEntity{
     private String name;
     private String phone;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

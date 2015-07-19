@@ -5,25 +5,17 @@ import java.io.Serializable;
 /**
  * Created by sigen on 7/16/2015.
  */
-public class Client implements Serializable{
-    private int id;
+public class Client extends AbstractEntity{
     private String fitstName;
     private String secondName;
     private String email;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getFitstName() {
         return fitstName;
     }
 
-    public void setFitstName(String fitstName) {
+    public void setFirstName(String fitstName) {
         this.fitstName = fitstName;
     }
 

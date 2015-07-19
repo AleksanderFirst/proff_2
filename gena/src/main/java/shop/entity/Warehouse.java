@@ -5,20 +5,10 @@ import java.io.Serializable;
 /**
  * Created by sigen on 7/16/2015.
  */
-public class Warehouse implements Serializable{
-    private int id;
+public class Warehouse extends AbstractEntity{
     private int goodId;
     private int supllierId;
     private long qty;
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getGoodId() {
         return goodId;
