@@ -20,6 +20,7 @@
         <module>kirill</module>
         <module>serega</module>
         <module>nikolay</module>
+        <module>salmin</module>
     </modules>
 <dependencies>
     <dependency>
