@@ -2,6 +2,9 @@ package db_tests;
 
 import org.junit.Before;
 import org.junit.Test;
+import shop.dao.ClientDaoImpl;
+import shop.dao.interfaces_dao.CrudGeneralDao;
+import shop.entity.Client;
 
 import java.math.BigDecimal;
 import java.sql.*;
@@ -130,5 +133,16 @@ public class TestDbAccess {
             System.out.println("ERROR: Unable to Connect to Database.");
         }
         return connection;
+    }
+
+    @Test
+    public void testInsertClient() throws Exception {
+        CrudGeneralDao<String, Client> dao = new ClientDaoImpl();
+        Client client = new Client();
+        client.setSecondName("Ivan");
+        client.setEmail("Ivan@com.ua");
+        client.setFirstName("1=1");
+        dao.insert(client);
+        dao.select("1 OR 1=1");
     }
 }
