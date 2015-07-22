@@ -9,6 +9,15 @@ public class Good extends AbstractEntity{
     private String goodName;
     private double price;
     private String description;
+    private Long qty;
+
+    public Long getQty() {
+        return qty;
+    }
+
+    public void setQty(Long qty) {
+        this.qty = qty;
+    }
 
     public String getGoodName() {
         return goodName;

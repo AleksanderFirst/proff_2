@@ -6,23 +6,23 @@ import java.io.Serializable;
  * Created by sigen on 7/16/2015.
  */
 public class Warehouse extends AbstractEntity{
-    private int goodId;
-    private int supllierId;
+    private Long goodId;
+    private Long supllierId;
     private long qty;
 
-    public int getGoodId() {
+    public Long getGoodId() {
         return goodId;
     }
 
-    public void setGoodId(int goodId) {
+    public void setGoodId(Long goodId) {
         this.goodId = goodId;
     }
 
-    public int getSupllierId() {
+    public Long getSupllierId() {
         return supllierId;
     }
 
-    public void setSupllierId(int supllierId) {
+    public void setSupllierId(Long supllierId) {
         this.supllierId = supllierId;
     }
 

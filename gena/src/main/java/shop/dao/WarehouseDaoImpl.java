@@ -1,6 +1,7 @@
 package shop.dao;
 
 import shop.OracleConnection;
+import shop.entity.Good;
 import shop.entity.Warehouse;
 
 import java.sql.PreparedStatement;
@@ -13,13 +14,17 @@ import java.sql.SQLException;
 public class WarehouseDaoImpl implements GeneralDao<Long,Warehouse>{
 
 public void insert(Warehouse warehouse) throws SQLException {
-    Integer goodId = warehouse.getGoodId();
-    Integer supplierId = warehouse.getSupllierId();
+    Long goodId = warehouse.getGoodId();
+    Long supplierId = warehouse.getSupllierId();
     Long qty = warehouse.getQty();
     PreparedStatement ps = OracleConnection.getConnection().prepareStatement("INSERT into Warehouse VALUES ? ,? ,? ");
-    ps.setInt(1, goodId);
-    ps.setInt(2, supplierId);
+    ps.setLong(1, goodId);
+    ps.setLong(2, supplierId);
     ps.setLong(3, qty);
+    Good good = new Good();
+    good.setId(goodId);
+    good.setQty(qty);
+    new GoodDaoImpl().update(good);
     ps.executeQuery();
 }
 
@@ -29,8 +34,8 @@ public void insert(Warehouse warehouse) throws SQLException {
         ResultSet rs = ps.executeQuery();
         Warehouse resWarehouse = new Warehouse();
         resWarehouse.setId(id);
-        resWarehouse.setGoodId(Integer.valueOf(rs.getString(1)));
-        resWarehouse.setSupllierId(Integer.valueOf(rs.getString(2)));
+        resWarehouse.setGoodId(Long.valueOf(rs.getString(1)));
+        resWarehouse.setSupllierId(Long.valueOf(rs.getString(2)));
         resWarehouse.setQty(Long.getLong(rs.getString(3)));
         return resWarehouse;
 
@@ -41,13 +46,10 @@ public void insert(Warehouse warehouse) throws SQLException {
     }
 
     public void delete(Warehouse warehouse) throws SQLException{
-        Long id = warehouse.getId();
-        PreparedStatement ps = OracleConnection.getConnection().prepareStatement("DELETE from Warehouse WHERE id = ?");
-        ps.setLong(1, id);
-        ps.executeQuery();
+//        Long id = warehouse.getId();
+//        PreparedStatement ps = OracleConnection.getConnection().prepareStatement("DELETE from Warehouse WHERE id = ?");
+//        ps.setLong(1, id);
+//        ps.executeQuery();
     }
 
-    public void update() throws SQLException{
-        //?
-    }
 }
