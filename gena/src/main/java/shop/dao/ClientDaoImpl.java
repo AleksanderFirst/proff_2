@@ -1,9 +1,7 @@
 package shop.dao;
 
-import com.sun.org.apache.bcel.internal.generic.Select;
 import shop.OracleConnection;
 import shop.entity.Client;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,7 +18,7 @@ public class ClientDaoImpl implements GeneralDao<Long,Client>{
         ps.setString(2, secondName);
         ResultSet rs = ps.executeQuery();
         if(rs.first()){
-            System.out.println("This client has an order, can`t delete");
+            System.out.println("This client has an order, can`t be deleted");
         } else {
             ps = OracleConnection.getConnection().prepareStatement("DELETE FROM client WHERE first_name = ? and secind_name = ?");
             ps.setString(1, firstName);

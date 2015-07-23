@@ -7,9 +7,15 @@ import java.sql.SQLException;
  * Created by sigen on 5/21/2015.
  */
 public class OracleConnection {
-
-
-    public static Connection getConnection() {
+    static OracleConnection instance = new OracleConnection();
+    Connection connection;
+    private OracleConnection(){
+        this.connection = newConnection();
+    }
+    public static Connection getConnection(){
+        return instance.connection;
+    }
+    private static Connection newConnection() {
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
         } catch (Exception e){
