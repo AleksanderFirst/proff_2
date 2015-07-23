@@ -1,3 +1,5 @@
+package archive;
+
 import analZER.ArrayAnalyzerImpl;
 import analZER.Result;
 import org.junit.Test;

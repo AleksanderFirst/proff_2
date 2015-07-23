@@ -2,12 +2,12 @@ package shop.dao;
 
 import shop.entity.Entity;
 
-public interface DaoInterface {
-    void insert(Entity entity);
+public interface DaoInterface<K, T extends Entity> {
+    void insert(T t);
 
-    Entity select(int id);
+    T select(long id);
 
-    void update(Entity entity);
+    void update(T t);
 
-    void delete(int id);
+    void delete(K key);
 }
