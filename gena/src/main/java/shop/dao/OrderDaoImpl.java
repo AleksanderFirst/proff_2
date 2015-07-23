@@ -5,7 +5,7 @@ import shop.entity.Order;
 import java.sql.SQLException;
 
 /**
- * Created by artem on 23.07.15.
+ * Created by sigen on 23.07.15.
  */
 public class OrderDaoImpl implements GeneralDao<Long, Order> {
     @Override
