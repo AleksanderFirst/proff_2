@@ -6,6 +6,15 @@ public class Client {
     private String secondName;
     private String email;
 
+    public Client() {
+    }
+
+    public Client(String firstName, String secondName, String email) {
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.email = email;
+    }
+
     public int getId() {
         return id;
     }
@@ -36,5 +45,15 @@ public class Client {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", secondName='" + secondName + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

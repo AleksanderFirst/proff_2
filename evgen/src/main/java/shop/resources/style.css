@@ -1,0 +1,68 @@
+#wrapper{
+
+    margin: 0 auto;
+    width: 875px;
+}
+#logo{
+    margin-top: 25px;
+}
+
+.menu_bar{
+    text-align: center;
+    margin-top: 20px;
+    position: relative;
+}
+.menu_bar ul li{
+    display: inline-block;
+    font: bold 18px Arial, Verdana, sans-serif;
+    color: #ffffff;
+    margin-right: 50px;
+    list-style-type: none;
+}
+.menu_bar ul li a{
+    color: #ffffff;
+    text-decoration: none;
+    text-align: center;
+}
+body{
+    background: url(texture.jpg) repeat;
+    background-size: cover;
+}
+/* Стили формы */
+#application {
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+/*Стили полей для ввода*/
+#applicationFirstName,
+#applicationSecondName,
+#applicationEmail,
+#applicationTelephone,
+#applicationQuantity{
+    width: 100%;
+    height: 50px;
+    background: none;
+    margin-top: 25px;
+    border: 1px solid #fff;
+    border-radius: 40px;
+    text-align: center;
+    color: #fff;
+    font-size: 24px;
+}
+
+/*Стили для кнопки*/
+.applicationButton {
+    margin-top: 25px;
+    background: #287963;
+    border: none;
+    width: 100%;
+    height: 73px;
+    border-radius: 40px;
+    color: #fff;
+    font-size: 24px;
+    text-transform: uppercase;
+    font-family: 'PT Sans', sans-serif;
+    cursor: pointer;
+}
